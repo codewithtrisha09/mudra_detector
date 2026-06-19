@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bharatanatyam Mudra Detector</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main class="hero">
+    <div class="container">
+      <section class="panel left">
+        <div class="brand">
+          <span class="brand-dot"></span>
+          Bharatanatyam Mudra Detector
+        </div>
+
+        <h1>Where tradition meets intelligent recognition</h1>
+
+        <p class="subtitle">
+          Explore Bharatanatyam through the language of mudras. This application recognizes hand gestures,
+          celebrates the heritage of classical dance, and helps you understand the meaning behind each symbolic pose.
+        </p>
+
+        <div class="cta-row">
+          <a href="{{ url_for('detect') }}" class="btn btn-primary">Start Detection</a>
+          <a href="#about" class="btn btn-secondary">Learn More</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="label">Live Accuracy</div>
+            <div class="value">89.9%</div>
+          </div>
+          <div class="stat">
+            <div class="label">Mudras Trained</div>
+            <div class="value">50+</div>
+          </div>
+          <div class="stat">
+            <div class="label">Cultural Scope</div>
+            <div class="value">Classical</div>
+          </div>
+        </div>
+
+        <h2 class="section-title" id="about">About Bharatanatyam</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>Ancient roots</h3>
+            <p>
+              Bharatanatyam is one of India’s most celebrated classical dance forms, known for its grace,
+              rhythm, and expressive storytelling.
+            </p>
+          </div>
+          <div class="info-card">
+            <h3>Power of mudras</h3>
+            <p>
+              Mudras are the visual vocabulary of the dance, used to express objects, emotions, deities,
+              and narrative meaning.
+            </p>
+          </div>
+          <div class="info-card">
+            <h3>Expression and meaning</h3>
+            <p>
+              Each hand gesture carries symbolic significance, turning movement into a language that can
+              communicate beyond words.
+            </p>
+          </div>
+          <div class="info-card">
+            <h3>Why it matters</h3>
+            <p>
+              Understanding mudras preserves cultural heritage while making classical dance more accessible
+              through modern technology.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel right">
+        <div class="portrait"></div>
+        <div class="note">
+          <strong>Featured mudras:</strong> Pataka for a flag-like open hand, Anjali for salutation,
+          Alapadma for a blooming lotus, Hamsasya for delicate expression, and Katakamukha for holding
+          or pinching gestures.
+        </div>
+        <div class="note">
+          Use this page as your entry screen, then guide users to the live camera view where prediction,
+          confidence, and mudra meaning can appear together.
+        </div>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

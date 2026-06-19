@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live Detection | Bharatanatyam Mudra Detector</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main class="hero">
+    <div class="container">
+      <section class="panel left">
+        <div class="brand">
+          <span class="brand-dot"></span>
+          Live Mudra Detection
+        </div>
+
+        <h1>Show a mudra to the camera</h1>
+
+        <p class="subtitle">
+          Keep your hand centered and steady. The model will detect the mudra and display the predicted class
+          with confidence.
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="label">Model Accuracy</div>
+            <div class="value">89.9%</div>
+          </div>
+          <div class="stat">
+            <div class="label">Current Result</div>
+            <div class="value" id="pred-label">---</div>
+          </div>
+          <div class="stat">
+            <div class="label">Confidence</div>
+            <div class="value" id="pred-conf">--%</div>
+          </div>
+        </div>
+
+        <h2 class="section-title">Tips for better results</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>Lighting</h3>
+            <p>Use bright, even light so the hand landmarks are clear.</p>
+          </div>
+          <div class="info-card">
+            <h3>Position</h3>
+            <p>Keep your hand fully inside the frame and avoid covering fingers.</p>
+          </div>
+          <div class="info-card">
+            <h3>Pose</h3>
+            <p>Hold the mudra steady for a moment before checking the result.</p>
+          </div>
+          <div class="info-card">
+            <h3>Distance</h3>
+            <p>Stay at a comfortable distance so the camera can see the whole hand.</p>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel right">
+        <div class="video-card">
+          <img src="{{ url_for('video_feed') }}" alt="Live Camera Feed">
+        </div>
+
+        <div class="note">
+          Try the important mudras: Pataka, Anjali, Alapadma, Hamsasya, and Katakamukha.
+        </div>
+
+        <div class="note">
+          If prediction is unstable, adjust the pose slowly and keep the fingers aligned.
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    async function updatePrediction() {
+      try {
+        const res = await fetch("/prediction");
+        const data = await res.json();
+        document.getElementById("pred-label").innerText = data.label ?? "---";
+        const conf = typeof data.confidence === "number" ? data.confidence : 0;
+        document.getElementById("pred-conf").innerText = (conf * 100).toFixed(1) + "%";
+      } catch (err) {
+        console.error("Prediction fetch failed:", err);
+      }
+    }
+
+    updatePrediction();
+    setInterval(updatePrediction, 1000);
+  </script>
+</body>
+</html>
