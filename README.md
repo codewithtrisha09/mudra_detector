@@ -1,106 +1,178 @@
 # Mudra Detector
 
-Mudra Detector is a computer vision project that recognizes Bharatanatyam hand mudras in real time using OpenCV, MediaPipe, and machine learning. It detects hand landmarks from a webcam feed, classifies the mudra, and displays the prediction through a Flask web interface.
+## Overview
 
-## Features
+Mudra Detector is a sophisticated computer vision application designed to recognize and classify Bharatanatyam hand mudras in real time. Leveraging advanced technologies including OpenCV, MediaPipe, and machine learning, the system detects hand landmarks from live webcam feeds, performs mudra classification, and presents results through an intuitive Flask-based web interface with confidence scoring.
 
-- Real-time hand landmark detection.
-- Bharatanatyam mudra classification.
-- Webcam-based prediction.
-- Confidence score display.
-- Flask-based web interface.
-- Easy to extend with more mudra classes.
+---
 
-## Tech Stack
+## Key Features
 
-- Python
-- OpenCV
-- MediaPipe
-- Flask
-- NumPy
-- Pandas
-- scikit-learn / TensorFlow
-- HTML
-- CSS
+- **Real-time Hand Landmark Detection**: Utilizes MediaPipe for accurate and rapid identification of hand keypoints from live video streams
+- **Bharatanatyam Mudra Classification**: Applies trained machine learning models to classify detected hand positions into recognized mudra categories
+- **Webcam Integration**: Seamless integration with standard webcam hardware for immediate real-time processing
+- **Confidence Scoring**: Displays classification confidence metrics to indicate prediction reliability
+- **Web-Based Interface**: User-friendly Flask application accessible through a web browser
+- **Modular Architecture**: Easily extensible design to accommodate additional mudra classes and classification models
+
+---
+
+## Technology Stack
+
+| Category | Technologies |
+|----------|---|
+| **Language** | Python 3.x |
+| **Computer Vision** | OpenCV, MediaPipe |
+| **Machine Learning** | scikit-learn, TensorFlow/Keras |
+| **Web Framework** | Flask |
+| **Data Processing** | NumPy, Pandas |
+| **Frontend** | HTML, CSS, JavaScript |
+
+---
 
 ## Project Structure
 
-```text
-mudra_detector/
-├── app.py
-├── extract_landmarks.py
-├── train_model.py
-├── requirements.txt
-├── hand_landmarker.task
-├── label_encoder.pkl
-├── labelencoder.pk1
-├── landmarks.csv
-├── mudra_model.keras
-├── static/
-└── templates/
 ```
+mudra_detector/
+├── app.py                      # Flask application entry point
+├── extract_landmarks.py        # Hand landmark extraction module
+├── train_model.py              # Model training script
+├── requirements.txt            # Project dependencies
+├── hand_landmarker.task        # MediaPipe hand landmark model
+├── mudra_model.keras           # Trained classification model
+├── label_encoder.pkl           # Label encoding for mudra classes
+├── labelencoder.pkl            # Backup label encoder
+├── landmarks.csv               # Training dataset with landmark coordinates
+├── static/                     # Static web assets
+│   └── [CSS and JavaScript files]
+└── templates/                  # HTML templates
+    └── [Web interface templates]
+```
+
+---
 
 ## How It Works
 
-1. The webcam captures live video.
-2. OpenCV reads each frame.
-3. MediaPipe detects hand landmarks.
-4. Landmark data is passed to the trained model.
-5. The model predicts the mudra.
-6. The result is shown on the web page.
+The Mudra Detector operates through a well-defined pipeline:
+
+1. **Video Capture**: The application captures continuous video frames from the connected webcam
+2. **Frame Processing**: OpenCV processes each frame for analysis
+3. **Landmark Detection**: MediaPipe's hand detection model identifies 21 hand keypoints in each frame
+4. **Feature Extraction**: Extracted landmark coordinates are normalized and prepared as feature vectors
+5. **Classification**: The trained machine learning model processes the feature vectors and predicts the mudra class
+6. **Result Display**: Predictions along with confidence scores are rendered in real time on the web interface
+
+---
 
 ## Installation
 
-### 1. Clone the repository
+### Step 1: Clone the Repository
+
 ```bash
 git clone https://github.com/codewithtrisha09/mudra_detector.git
 cd mudra_detector
 ```
 
-### 2. Create a virtual environment
+### Step 2: Create a Virtual Environment
+
 ```bash
 python -m venv .venv
 ```
 
-### 3. Activate the virtual environment
+### Step 3: Activate the Virtual Environment
 
-#### Windows PowerShell
+#### On Windows (PowerShell)
 ```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
 .\.venv\Scripts\Activate.ps1
 ```
 
-#### Command Prompt
-```bat
+#### On Windows (Command Prompt)
+```cmd
 .venv\Scripts\activate
 ```
 
-### 4. Install dependencies
+#### On macOS and Linux
+```bash
+source .venv/bin/activate
+```
+
+### Step 4: Install Dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
+Ensure all required packages are installed before proceeding to the next section.
+
+---
+
 ## Usage
 
-### Run the app
+### Running the Application
+
+Start the Flask development server:
+
 ```bash
 python app.py
 ```
 
-Then open the local address shown in the terminal.
+After initialization, the terminal will display a local URL (typically `http://127.0.0.1:5000`). Open this address in your web browser to access the application interface.
 
-## Future Improvements
+### Using the Interface
 
-- Add more mudra classes.
-- Improve prediction accuracy.
-- Add posture correction feedback.
-- Add AR-style overlays.
-- Deploy the app online.
+1. Grant webcam permissions when prompted by your browser
+2. Position your hand within the camera's field of view
+3. The system will display the detected mudra classification and associated confidence score in real time
 
+---
 
+## Training and Model Development
+
+### Extract Landmarks
+
+To generate training data from recorded hand positions:
+
+```bash
+python extract_landmarks.py
+```
+
+This script processes video or image data and outputs landmark coordinates to `landmarks.csv`.
+
+### Train the Classification Model
+
+To train the mudra classification model:
+
+```bash
+python train_model.py
+```
+
+The trained model will be saved as `mudra_model.keras` with corresponding label encodings.
+
+---
+
+## Future Development Roadmap
+
+- **Expanded Mudra Library**: Incorporate additional Bharatanatyam mudra classes for comprehensive coverage
+- **Enhanced Accuracy**: Implement advanced feature engineering and model optimization techniques
+- **Posture Correction Feedback**: Add real-time guidance for users learning mudra positions
+- **Augmented Reality Overlays**: Develop AR visualizations for enhanced user engagement and learning
+- **Cloud Deployment**: Deploy the application to cloud platforms for broader accessibility
+- **Mobile Support**: Create mobile-compatible versions for iOS and Android platforms
+- **Multi-hand Detection**: Extend functionality to recognize complex two-hand mudra combinations
+
+---
 
 ## Author
 
-Trisha Shetty  
-CSE (AI & ML), MIT Manipal  
+**Trisha Shetty**  
+Computer Science & Engineering (Artificial Intelligence & Machine Learning)  
+MIT Manipal  
 2024–2028
+
+---
+
+
+## Contributing
+
+Contributions, feedback, and suggestions are welcome. Please feel free to open issues or submit pull requests to improve the project.
