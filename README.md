@@ -170,7 +170,6 @@ Computer Science & Engineering (Artificial Intelligence & Machine Learning)
 MIT Manipal  
 2024–2028
 
----
 
 
 ## Contributing
