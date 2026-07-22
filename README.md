@@ -1,4 +1,4 @@
-##🪷 MudraLens
+## 🪷 MudraLens
 
 **Real-time Bharatanatyam mudra recognition powered by computer vision.**
 
