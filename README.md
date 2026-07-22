@@ -1,8 +1,8 @@
-# 🪷 MudraLens
+🪷 MudraLens
 
-**Real-time Bharatanatyam mudra recognition, powered by computer vision.**
+**Real-time Bharatanatyam mudra recognition powered by computer vision.**
 
-MudraLens uses hand-landmark tracking and a trained classification model to identify Bharatanatyam hand mudras live through a webcam, scoring each prediction with a confidence level — making it a practical tool for dance students, teachers, and researchers exploring the intersection of classical Indian art and AI.
+MudraLens uses hand-landmark tracking and a trained classification model to identify Bharatanatyam hand mudras live through a webcam, scoring each prediction with a confidence level. It is designed as a practical tool for dance students, teachers, and researchers exploring the intersection of classical Indian art and artificial intelligence.
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue)
 ![Flask](https://img.shields.io/badge/Flask-Backend-black)
@@ -12,9 +12,9 @@ MudraLens uses hand-landmark tracking and a trained classification model to iden
 
 ---
 
-## ✨ Why MudraLens
+## Overview
 
-Bharatanatyam expresses meaning through 28 root hand gestures (mudras), each requiring precise finger and palm positioning. MudraLens brings that precision into a browser: point a webcam at your hand and get an instant, confidence-scored classification — no dance expert required to check your form.
+Bharatanatyam expresses meaning through 28 root hand gestures (mudras), each requiring precise finger and palm positioning. MudraLens brings that precision into the browser: point a webcam at a hand and receive an instant, confidence-scored classification, enabling practitioners to verify their form without requiring an expert in the room.
 
 ---
 
@@ -22,9 +22,9 @@ Bharatanatyam expresses meaning through 28 root hand gestures (mudras), each req
 
 - **Real-Time Hand Landmark Detection** — MediaPipe tracks 21 keypoints per hand at live video speed
 - **Bharatanatyam Mudra Classification** — a trained Keras model maps landmark geometry to named mudra classes
-- **Confidence Scoring** — every prediction ships with a probability score, so users know how certain the model is
-- **Webcam-Native Interface** — works directly in the browser via a lightweight Flask backend, no installation beyond setup
-- **Modular Pipeline** — landmark extraction, training, and inference are cleanly separated, so new mudra classes can be added without rewriting the app
+- **Confidence Scoring** — every prediction includes a probability score indicating model certainty
+- **Webcam-Native Interface** — runs directly in the browser via a lightweight Flask backend
+- **Modular Pipeline** — landmark extraction, training, and inference are cleanly separated, allowing new mudra classes to be added without modifying the core application
 - **89% Classification Accuracy** — validated on a large, diverse image dataset spanning multiple mudra classes
 
 ---
@@ -49,11 +49,11 @@ Webcam Feed → OpenCV Frame Capture → MediaPipe Landmark Detection
      → Feature Normalization → Keras Classifier → Mudra + Confidence Score
 ```
 
-1. **Video Capture** — OpenCV pulls continuous frames from the connected webcam
+1. **Video Capture** — OpenCV captures continuous frames from the connected webcam
 2. **Landmark Detection** — MediaPipe locates 21 hand keypoints per frame
 3. **Feature Extraction** — landmark coordinates are normalized into a feature vector
 4. **Classification** — the trained model predicts the mudra class from that vector
-5. **Result Display** — the predicted mudra and its confidence score render live in the browser
+5. **Result Display** — the predicted mudra and its confidence score are rendered live in the browser
 
 ---
 
@@ -77,6 +77,10 @@ mudralens/
 
 ## Getting Started
 
+### Prerequisites
+- Python 3.x
+- A webcam-enabled device
+
 ### 1. Clone the repository
 ```bash
 git clone https://github.com/codewithtrisha09/mudralens.git
@@ -88,7 +92,7 @@ cd mudralens
 python -m venv .venv
 ```
 
-### 3. Activate it
+### 3. Activate the environment
 
 | OS | Command |
 |---|---|
@@ -101,39 +105,39 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-### 5. Run the app
+### 5. Run the application
 ```bash
 python app.py
 ```
 
-Open the local URL printed in the terminal (typically `http://127.0.0.1:5000`), grant webcam access when prompted, and hold a mudra up to the camera to see it classified live.
+Open the local URL printed in the terminal (typically `http://127.0.0.1:5000`), grant webcam access when prompted, and present a mudra to the camera to see it classified in real time.
 
 ---
 
-## Training Your Own Model
+## Training a Custom Model
 
-**Extract landmarks from your dataset:**
+**Extract landmarks from a dataset:**
 ```bash
 python extract_landmarks.py
 ```
-Outputs normalized hand-landmark coordinates to `landmarks.csv`.
+This outputs normalized hand-landmark coordinates to `landmarks.csv`.
 
 **Train the classifier:**
 ```bash
 python train_model.py
 ```
-Saves the trained model to `mudra_model.keras` along with its label encoder.
+This saves the trained model to `mudra_model.keras` along with its corresponding label encoder.
 
 ---
 
 ## Roadmap
 
-- [ ] Expand the mudra library to cover the full set of 28 root gestures
-- [ ] Posture-correction feedback for learners
-- [ ] AR overlays showing correct hand positioning
-- [ ] Two-hand (samyukta) mudra recognition
-- [ ] Cloud deployment for browser-only access, no local setup
-- [ ] Mobile-compatible build (iOS/Android)
+- [ ] Expand the mudra library to cover the complete set of 28 root gestures
+- [ ] Add posture-correction feedback for learners
+- [ ] Introduce AR overlays to guide correct hand positioning
+- [ ] Support two-hand (samyukta) mudra recognition
+- [ ] Enable cloud deployment for browser-only access, eliminating local setup
+- [ ] Deliver a mobile-compatible build (iOS/Android)
 
 ---
 
@@ -147,6 +151,4 @@ B.Tech CSE (AI & ML), MIT Manipal · 2024–2028
 
 ## Contributing
 
-Issues and pull requests are welcome — especially new labeled mudra data, model improvements, or UI polish. Please open an issue first for any significant feature so we can align on scope before you start coding.
-
-
+Contributions are welcome, particularly labeled mudra data, model improvements, and UI enhancements. For significant feature proposals, please open an issue first to align on scope before development begins.
